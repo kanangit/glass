@@ -1,0 +1,12 @@
+try
+        {
+                filterNo = 1;
+                OnThicknsNChange();
+        }
+        catch (Exception &E)
+        {
+                filter1.dots.resize(0);
+                flag_filterEmpty1 = true;
+                IfFilterEmpty();
+                Series2->Clear();
+        }

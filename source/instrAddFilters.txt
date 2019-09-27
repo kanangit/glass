@@ -1,0 +1,59 @@
+1. Переписать файлы фильтров.
+2. Удалить расширения.
+3. Поменять имя вкладки на TabНазваниеСтекол
+4. Добавить подпись ко вкладке
+5. Добавить обработчик события на OnShow:
+if (flag_ShowBS == false)
+        {
+                showBS();
+                flag_ShowBS = true;
+         }
+6. Поменять названия переменных на свои.
+7. Добавить переменные:
+	bool flag_ShowBS;
+	bool flag_FindFirstBS;
+	AnsiString maskBS;
+	TSearchRec srec_BS;
+8. Инициализировать новые переменные.
+9. Добавить функцию showBS, добавить в нее содержимое:
+	PlotData(CalcTransmn(LoadData(FindFilterFile(maskSZS)),1,1), LineSeries19, Chart20);
+        PlotData(CalcTransmn(LoadData(FindFilterFile(maskSZS)),1,1), LineSeries20, Chart21);
+        PlotData(CalcTransmn(LoadData(FindFilterFile(maskSZS)),1,1), LineSeries21, Chart22);
+        PlotData(CalcTransmn(LoadData(FindFilterFile(maskSZS)),1,1), LineSeries22, Chart23);
+        PlotData(CalcTransmn(LoadData(FindFilterFile(maskSZS)),1,1), LineSeries23, Chart24);
+        PlotData(CalcTransmn(LoadData(FindFilterFile(maskSZS)),1,1), LineSeries24, Chart25);
+        PlotData(CalcTransmn(LoadData(FindFilterFile(maskSZS)),1,1), LineSeries25, Chart26);
+        PlotData(CalcTransmn(LoadData(FindFilterFile(maskSZS)),1,1), LineSeries26, Chart27);
+        PlotData(CalcTransmn(LoadData(FindFilterFile(maskSZS)),1,1), LineSeries27, Chart28);
+        PlotData(CalcTransmn(LoadData(FindFilterFile(maskSZS)),1,1), LineSeries28, Chart29);
+        PlotData(CalcTransmn(LoadData(FindFilterFile(maskSZS)),1,1), LineSeries29, Chart30);
+        PlotData(CalcTransmn(LoadData(FindFilterFile(maskSZS)),1,1), LineSeries30, Chart31);
+        PlotData(CalcTransmn(LoadData(FindFilterFile(maskSZS)),1,1), LineSeries31, Chart32);
+        PlotData(CalcTransmn(LoadData(FindFilterFile(maskSZS)),1,1), LineSeries32, Chart33);
+        PlotData(CalcTransmn(LoadData(FindFilterFile(maskSZS)),1,1), LineSeries33, Chart34);
+10. Скопировать содержимое предыдущей вкладки, удалить или добавить нужное число графиков, проследить, чтобы порядковые номера шли по порядку возрастрания.
+11. Привести в соответствие содержимое функции showBS с этими графиками.
+12. Добавить код в функцию FindFilterFile:
+	//BS filters:
+        if(flag_FindFirstBS == true && mask == maskBS)
+                {
+
+                     if (FindNext(srec_BS) == 0)
+                        name = srec_BS.Name;
+                     else
+                        FindClose(srec_BS);
+
+                 }
+        if (flag_FindFirstBS == false && mask == maskBS)
+        {
+                FindFirst(mask, faAnyFile, srec_BS);
+                name = srec_BS.Name;
+                flag_FindFirstBS = true;
+        }
+13. Изменить названия переменных на свои.
+14. Добавить обработчики даблкликов на графики:
+	Form1->IfFilterEmpty();
+        Form1->PlotSep(Chart33->Title->Text->Strings[1]);
+        Form1->PlotSum();
+        Hide();
+        Form1->Show();
